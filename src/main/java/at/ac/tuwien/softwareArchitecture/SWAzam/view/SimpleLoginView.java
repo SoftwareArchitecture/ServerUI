@@ -1,5 +1,7 @@
 package at.ac.tuwien.softwareArchitecture.SWAzam.view;
 
+import at.ac.tuwien.softwarearchitecture.swazam.common.infos.Account;
+
 import com.vaadin.data.validator.AbstractValidator;
 import com.vaadin.data.validator.EmailValidator;
 import com.vaadin.navigator.View;
@@ -17,6 +19,10 @@ public class SimpleLoginView extends CustomComponent implements View, Button.Cli
 	
 	private final PasswordField password;
 	
+	private Account ac;
+	
+    private JerseyClient jc = new JerseyClient();
+	
 	private final Button loginButton;
 	
 	public SimpleLoginView() {
@@ -27,13 +33,13 @@ public class SimpleLoginView extends CustomComponent implements View, Button.Cli
 	user.setWidth("300px");
 	user.setRequired(true);
 	user.setInputPrompt("Your username (eg. joe@email.com)");
-	user.addValidator(new EmailValidator("Username must be an email address"));
+	//user.addValidator(new EmailValidator("Username must be an email address"));
 	user.setInvalidAllowed(false);
 	
 	// Create the password input field
 	password = new PasswordField("Password:");
 	password.setWidth("300px");
-	password.addValidator(new PasswordValidator());
+	//password.addValidator(new PasswordValidator());
 	password.setRequired(true);
 	password.setValue("");
 	password.setNullRepresentation("");
@@ -109,12 +115,16 @@ public class SimpleLoginView extends CustomComponent implements View, Button.Cli
 		 // Validate username and password with database here. For examples sake
 		 // I use a dummy username and password.
 		 //
-		boolean isValid = username.equals("test@test.com")
-		        && password.equals("passw0rd");
+		boolean isValid = username.equals("test")
+		        && password.equals("test");
 		
 		if(isValid){
+			ac = jc.login(username, password);
+			
 		    // Store the current user in the service session
 		    getSession().setAttribute("user", username);
+		    
+		    getSession().setAttribute("account", ac);
 		
 		    // Navigate to main view
 		    getUI().getNavigator().navigateTo(SimpleLoginMainView.NAME);
@@ -125,5 +135,6 @@ public class SimpleLoginView extends CustomComponent implements View, Button.Cli
 		    this.password.setValue(null);
 		    this.password.focus();
 		}
+		
 	}
 }
