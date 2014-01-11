@@ -1,6 +1,7 @@
 package at.ac.tuwien.softwareArchitecture.SWAzam.view;
 
 import java.net.URI;
+import java.util.List;
 
 //import javax.ws.rs.QueryParam;
 import javax.ws.rs.core.MediaType;
@@ -10,6 +11,7 @@ import javax.ws.rs.core.UriBuilder;
 import at.ac.tuwien.softwarearchitecture.swazam.common.infos.Account;
 
 import com.sun.jersey.api.client.Client;
+import com.sun.jersey.api.client.GenericType;
 //import com.sun.jersey.api.client.ClientResponse;
 import com.sun.jersey.api.client.WebResource;
 import com.sun.jersey.api.client.config.ClientConfig;
@@ -41,7 +43,7 @@ public class JerseyClient {
     	queryParams1.add("firstname", Firstname);
     	queryParams1.add("lastname", Lastname);
     	queryParams1.add("sessionkey", sessionkey);
-    	service.path("webapi").path("accountmanagement").path("updateaccount").queryParams(queryParams1).accept(MediaType.APPLICATION_XML).get(Account.class);
+    	service.path("webapi").path("accountmanagement").path("updateaccount").queryParams(queryParams1).accept(MediaType.APPLICATION_XML).put();
     }
     
     public void deleteAccount(int id, String sessionkey)
@@ -49,7 +51,7 @@ public class JerseyClient {
     	MultivaluedMap<String, String> queryParams1 = new MultivaluedMapImpl();
     	queryParams1.add("id", String.valueOf(id));
     	queryParams1.add("sessionkey", sessionkey);
-    	service.path("webapi").path("accountmanagement").path("deleteaccount").queryParams(queryParams1).accept(MediaType.APPLICATION_XML).get(Account.class);
+    	service.path("webapi").path("accountmanagement").path("deleteaccount").queryParams(queryParams1).delete();
     }
     
     public void insertAccount(String username, String password, String Firstname, String Lastname, String sessionkey)
@@ -60,7 +62,12 @@ public class JerseyClient {
     	queryParams1.add("firstname", Firstname);
     	queryParams1.add("lastname", Lastname);
     	queryParams1.add("sessionkey", sessionkey);
-    	service.path("webapi").path("accountmanagement").path("insertaccount").queryParams(queryParams1).accept(MediaType.APPLICATION_XML).get(Account.class);
+    	service.path("webapi").path("accountmanagement").path("insertaccount").queryParams(queryParams1).accept(MediaType.APPLICATION_XML).post();
+    }
+    
+    public List<Account> list()
+    {
+    	return (List<Account>) service.path("webapi").path("accountmanagement").path("list").accept(MediaType.APPLICATION_XML).get(new GenericType<List<Account>>(){});
     }
     
     //String s = service.queryParams(queryParameters).get(String.class);

@@ -39,15 +39,17 @@ public class InitUI extends UI
         new Navigator(this, this);
 
         //
-        // The initial log view where the user can login to the application
+        // The Views for navigator
         //
         getNavigator().addView(SimpleLoginView.NAME, SimpleLoginView.class);
-
+        getNavigator().addView(InsertView.NAME, InsertView.class);
+        getNavigator().addView(DeleteView.NAME, DeleteView.class);
+        getNavigator().addView(EditView.NAME, EditView.class);
         //
         // Add the main view of the application
         //
-        getNavigator().addView(SimpleLoginMainView.NAME,
-                SimpleLoginMainView.class);
+        getNavigator().addView(MainView.NAME,
+                MainView.class);
                        
         //
         // We use a view change handler to ensure the user is always redirected

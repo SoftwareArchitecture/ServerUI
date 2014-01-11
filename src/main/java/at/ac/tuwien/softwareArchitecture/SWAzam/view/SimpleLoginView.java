@@ -115,26 +115,33 @@ public class SimpleLoginView extends CustomComponent implements View, Button.Cli
 		 // Validate username and password with database here. For examples sake
 		 // I use a dummy username and password.
 		 //
-		boolean isValid = username.equals("test")
-		        && password.equals("test");
+		//boolean isValid = username.equals("test")
+		//        && password.equals("test");
 		
-		if(isValid){
+		//if(isValid){
 			ac = jc.login(username, password);
 			
-		    // Store the current user in the service session
-		    getSession().setAttribute("user", username);
-		    
-		    getSession().setAttribute("account", ac);
+			if (ac != null)
+			{
+			
+			    // Store the current user in the service session
+			    getSession().setAttribute("user", username);
+			    
+			    getSession().setAttribute("account", ac);
+			    
+			    getSession().setAttribute("sessionKey", ac.getSessionkey());
+			
+			    // Navigate to main view
+			    getUI().getNavigator().navigateTo(MainView.NAME);
+			}
 		
-		    // Navigate to main view
-		    getUI().getNavigator().navigateTo(SimpleLoginMainView.NAME);
-		
-		} else {
+			
+			//} else {
 		
 		    // Wrong password clear the password field and refocuses it
-		    this.password.setValue(null);
-		    this.password.focus();
-		}
+		  //  this.password.setValue(null);
+		  //  this.password.focus();
+		//}
 		
 	}
 }

@@ -52,21 +52,12 @@
 			<artifactId>vaadin-client-compiled</artifactId>
 			<version>${vaadin.version}</version>
 		</dependency>
-		<!--
-		  Needed when using the widgetset optimizer (custom ConnectorBundleLoaderFactory).
-		  
-		  For widgetset compilation, vaadin-client-compiler is automatically added on the
-		  compilation classpath by vaadin-maven-plugin so normally there is no need for an
-		  explicit dependency.
-		-->
-		<!--
-		<dependency>
-			<groupId>com.vaadin</groupId>
-			<artifactId>vaadin-client-compiler</artifactId>
-			<version>${vaadin.version}</version>
-			<scope>provided</scope>
-		</dependency>
-		-->
+		<!-- Needed when using the widgetset optimizer (custom ConnectorBundleLoaderFactory). 
+			For widgetset compilation, vaadin-client-compiler is automatically added 
+			on the compilation classpath by vaadin-maven-plugin so normally there is 
+			no need for an explicit dependency. -->
+		<!-- <dependency> <groupId>com.vaadin</groupId> <artifactId>vaadin-client-compiler</artifactId> 
+			<version>${vaadin.version}</version> <scope>provided</scope> </dependency> -->
 		<dependency>
 			<groupId>com.vaadin</groupId>
 			<artifactId>vaadin-client</artifactId>
@@ -100,9 +91,9 @@
 			<version>1.8</version>
 		</dependency>
 		<dependency>
-            <groupId>at.ac.tuwien.softwareArchitecture.SWAzam</groupId>
-            <artifactId>Common</artifactId>
-            <version>1.0-SNAPSHOT</version>
+			<groupId>at.ac.tuwien.softwareArchitecture.SWAzam</groupId>
+			<artifactId>Common</artifactId>
+			<version>1.0-SNAPSHOT</version>
 		</dependency>
 	</dependencies>
 
@@ -181,40 +172,41 @@
 				<artifactId>jetty-maven-plugin</artifactId>
 			</plugin>
 			<plugin>
-                <groupId>org.apache.tomcat.maven</groupId>
-                <artifactId>tomcat7-maven-plugin</artifactId>
-                <version>2.1</version>
-                <executions>
-                    <execution>
-                        <id>tomcat-create-exec-war</id>
-                        <goals>
-                            <goal>exec-war</goal>
-                        </goals>
-                        <phase>package</phase>
-                        <configuration>
-                            <path>/SWazam</path> 
-                            <finalName>${project.artifactId}-${project.version}.war.jar</finalName>
-                        </configuration>
-                    </execution>
-                                        
-                    <execution>
-                        <id>tomcat-create-standalone-war</id>
-                        <goals>
-                            <goal>exec-war</goal>
-                        </goals>
-                        <phase>package</phase>
-                        <configuration>
-                            <path>/SWazam</path> 
-                            <finalName>${project.artifactId}-${project.version}.war</finalName>
-                        </configuration>
-                    </execution>
+				<groupId>org.apache.tomcat.maven</groupId>
+				<artifactId>tomcat7-maven-plugin</artifactId>
+				<version>2.1</version>
+				<executions>
+					<execution>
+						<id>tomcat-create-exec-war</id>
+						<goals>
+							<goal>exec-war</goal>
+						</goals>
+						<phase>package</phase>
+						<configuration>
+							<path>/SWazam</path>
+							<finalName>${project.artifactId}-${project.version}.war.jar</finalName>
+						</configuration>
+					</execution>
 
-                </executions>
-            </plugin>
+					<execution>
+						<id>tomcat-create-standalone-war</id>
+						<goals>
+							<goal>exec-war</goal>
+						</goals>
+						<phase>package</phase>
+						<configuration>
+							<path>/SWazam</path>
+							<finalName>${project.artifactId}-${project.version}.war</finalName>
+						</configuration>
+					</execution>
+
+				</executions>
+			</plugin>
 		</plugins>
 		<pluginManagement>
 			<plugins>
-				<!--This plugin's configuration is used to store Eclipse m2e settings only. It has no influence on the Maven build itself.-->
+				<!--This plugin's configuration is used to store Eclipse m2e settings 
+					only. It has no influence on the Maven build itself. -->
 				<plugin>
 					<groupId>org.eclipse.m2e</groupId>
 					<artifactId>lifecycle-mapping</artifactId>
