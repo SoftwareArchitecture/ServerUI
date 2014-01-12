@@ -45,6 +45,7 @@ public class InitUI extends UI
         getNavigator().addView(InsertView.NAME, InsertView.class);
         getNavigator().addView(DeleteView.NAME, DeleteView.class);
         getNavigator().addView(EditView.NAME, EditView.class);
+        getNavigator().addView(HistoryView.NAME, HistoryView.class);
         //
         // Add the main view of the application
         //

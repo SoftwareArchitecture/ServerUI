@@ -44,7 +44,15 @@ public class MainView extends CustomComponent implements View {
     	
     });
     
+    Button historyBtn = new Button("History", new Button.ClickListener() {
 
+        @Override
+        public void buttonClick(ClickEvent event) {
+            getUI().getNavigator().navigateTo(HistoryView.NAME);
+            
+            
+        }
+    });
     
     Button logout = new Button("Logout", new Button.ClickListener() {
 
@@ -62,7 +70,7 @@ public class MainView extends CustomComponent implements View {
     });
 
     public MainView() {
-        setCompositionRoot(new CssLayout(text, logout, insertBtn, deleteBtn, editBtn));
+        setCompositionRoot(new VerticalLayout(text, insertBtn, deleteBtn, editBtn, historyBtn, logout));
     }
 
     public void enter(ViewChangeEvent event) {

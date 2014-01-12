@@ -4,6 +4,7 @@ import at.ac.tuwien.softwarearchitecture.swazam.common.infos.Account;
 
 import com.vaadin.data.validator.AbstractValidator;
 import com.vaadin.data.validator.EmailValidator;
+import com.vaadin.event.ShortcutAction.KeyCode;
 import com.vaadin.navigator.View;
 import com.vaadin.navigator.ViewChangeListener.ViewChangeEvent;
 import com.vaadin.shared.ui.*;
@@ -32,7 +33,7 @@ public class SimpleLoginView extends CustomComponent implements View, Button.Cli
 	user = new TextField("User:");
 	user.setWidth("300px");
 	user.setRequired(true);
-	user.setInputPrompt("Your username (eg. joe@email.com)");
+	user.setInputPrompt("Your username ");
 	//user.addValidator(new EmailValidator("Username must be an email address"));
 	user.setInvalidAllowed(false);
 	
@@ -46,10 +47,11 @@ public class SimpleLoginView extends CustomComponent implements View, Button.Cli
 	
 	// Create login button
 	loginButton = new Button("Login", this);
+	loginButton.setClickShortcut(KeyCode.ENTER);
 	
 	// Add both to a panel
 	VerticalLayout fields = new VerticalLayout(user, password, loginButton);
-	fields.setCaption("Please login to access the application. (test@test.com/passw0rd)");
+	fields.setCaption("Please login to access the application. (test/test)");
 	fields.setSpacing(true);
 	fields.setMargin(new MarginInfo(true, true, true, false));
 	fields.setSizeUndefined();

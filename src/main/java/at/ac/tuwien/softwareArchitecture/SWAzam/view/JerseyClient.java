@@ -8,7 +8,7 @@ import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.MultivaluedMap;
 import javax.ws.rs.core.UriBuilder;
 
-import at.ac.tuwien.softwarearchitecture.swazam.common.infos.Account;
+import at.ac.tuwien.softwarearchitecture.swazam.common.infos.*;
 
 import com.sun.jersey.api.client.Client;
 import com.sun.jersey.api.client.GenericType;
@@ -68,6 +68,11 @@ public class JerseyClient {
     public List<Account> list()
     {
     	return (List<Account>) service.path("webapi").path("accountmanagement").path("list").accept(MediaType.APPLICATION_XML).get(new GenericType<List<Account>>(){});
+    }
+    
+    public List<History> getHistory(int id) 
+    {
+    	return (List<History>) service.path("webapi").path("searchmanagement").path("history").queryParam("accountid", String.valueOf(id)).accept(MediaType.APPLICATION_XML).get(new GenericType<List<History>>(){});
     }
     
     //String s = service.queryParams(queryParameters).get(String.class);
