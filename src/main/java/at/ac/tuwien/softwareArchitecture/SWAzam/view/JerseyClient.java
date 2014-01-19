@@ -83,6 +83,6 @@ public class JerseyClient {
     */
     
     private static URI getBaseURI() {
-        return UriBuilder.fromUri("http://localhost:8181/Server").build();
+        return UriBuilder.fromUri("http://localhost:8181/SWazam").build();
      }
 }
